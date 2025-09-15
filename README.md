@@ -1,105 +1,153 @@
-# 🚀 Enterprise Wi-Fi Deployment: Ruckus R730 Setup in a Legacy Home
+# Ruckus R730 Wi-Fi 6 Access Point Setup
 
----
+![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
+![Hardware](https://img.shields.io/badge/Hardware-Enterprise_WiFi-orange?style=flat-square)
+![Skill](https://img.shields.io/badge/Skill-Firmware_Flash-blue?style=flat-square)
+![Difficulty](https://img.shields.io/badge/Difficulty-Intermediate-yellow?style=flat-square)
 
 ## 🎯 Project Overview
 
-This project documents the configuration and deployment of a Ruckus R730 Wi-Fi 6 access point in a legacy residential home where standard consumer-grade equipment failed to provide adequate coverage. By repurposing an enterprise-grade AP and adapting it to standalone use, the goal was twofold:
+This project documents setting up a used Ruckus R730 enterprise access point to solve Wi-Fi coverage issues in a house with dense walls. The R730 is an end-of-life enterprise AP that was Ruckus's first Wi-Fi 6 model, but it used early Wi-Fi 6 chips that weren't fully compliant with the final standard.
 
-✅ **Solve a real-world technical challenge:** Restore strong, stable wireless coverage across a structurally complex house.
-🚀 **Build professional credibility:** Learn hands-on with enterprise gear to improve practical skills and support IT career growth.
-
----
-
-## 📜 Background & Motivation
-
-Following the passing of my aunt and uncle, my brother and I received modest inheritances, and I inherited their home in Foster, West Virginia. While cleaning and renovating to make it livable, I began envisioning a space where I could grow professionally through IT and home lab projects. However, Wi-Fi coverage was poor—likely due to the home’s construction, which included sheetrock walls backed by hardwood paneling. This severely limited wireless signal range.
-
-With job prospects in mind, I searched for used enterprise gear on eBay and found a Ruckus R730 access point. I hoped this would not only solve the wireless issue but also give me a valuable, hands-on learning experience with enterprise networking equipment.
-
-This deployment became a home lab milestone and a symbolic turning point as I settled into a new chapter.
+The main challenge was getting it working in standalone mode since Ruckus never released their standard "Unleashed" controller-free firmware for this particular model, likely due to the early chipset limitations.
 
 ---
 
-## 🛠️ Equipment List
+## 🏠 Background & Problem
 
-| Item                         | Details                                                   |
-| ---------------------------- | --------------------------------------------------------- |
-| **Ruckus R730 Access Point** | Wi-Fi 6 enterprise AP, early chipset revision             |
-| **PoE Injector**             | High-wattage (802.3at), matched to AP power needs         |
-| **Ethernet Cables**          | Cat5e+ for stable throughput                              |
-| **Windows 11 Laptop**        | Used for configuration, firmware upload, and IP discovery |
+**The Issue:**
+- Inherited a house with very poor Wi-Fi coverage
+- Thick walls with hardwood paneling backing interfered with wireless signals
+- Consumer routers couldn't provide adequate coverage throughout the house
 
----
-
-## 🔧 Technical Walkthrough: From Brick to Broadcast
-
-### ✉️ Step 1: Gaining Initial Access
-
-The device arrived password-locked. I performed a factory reset using the physical reset pinhole, restoring it to factory defaults and allowing access via the default IP address through a direct Ethernet connection.
-
-### 🔄 Step 2: Firmware Discovery & Troubleshooting
-
-Research revealed that due to the early Wi-Fi 6 chipset, this model was **incompatible with Ruckus's Unleashed firmware**, which is commonly used for controller-less setups. The chipset didn’t support newer firmware builds, so a different route was necessary.
-
-### 🔎 Step 3: Sourcing and Flashing Solo Firmware
-
-I located the appropriate Solo firmware on Ruckus's support site and verified its compatibility with my hardware revision. After downloading the correct firmware and logging into the web interface, I successfully flashed the device. The AP rebooted into the Solo interface with a streamlined configuration dashboard.
-
-### 📶 Step 4: Final Network Configuration
-
-Following reboot:
-
-* Created separate SSIDs for **2.4 GHz** and **5 GHz** bands
-* Enabled **WPA2/WPA3 encryption** and changed default credentials
-* Manually selected wireless channels to reduce interference from neighboring access points
-* Verified signal strength in previously unreachable zones
+**The Solution:**
+- Purchased a used Ruckus R730 enterprise access point from eBay
+- Goal was to solve the coverage problem while gaining hands-on experience with enterprise networking gear
 
 ---
 
-## 🧠 Challenges & Solutions Summary
+## 🛠️ Hardware & Equipment
 
-| Challenge                        | Solution                                                      |
-| -------------------------------- | ------------------------------------------------------------- |
-| **Proprietary Firmware Lockout** | Factory reset and Solo firmware flash                         |
-| **Unleashed Incompatibility**    | Adapted to chipset limitations using Solo AP firmware         |
-| **Power & Cabling Requirements** | Installed high-wattage PoE injector for single cable solution |
-| **Signal Loss in Dense Walls**   | Used enterprise-grade hardware and optimal placement          |
+**Main Components:**
+- **Ruckus R730 Access Point** (used, end-of-life enterprise model)
+- **High-wattage PoE injector** (802.3at compatible)
+- **Ethernet cables** (Cat5e)
+- **Windows 11 laptop** for configuration
 
----
-
-## 📡 Deployment Outcome
-
-* ✅ **Operational Success:** Stable, high-performance Wi-Fi now reaches all corners of the home—including rooms that previously had no signal.
-* 🎓 **Career Impact:** Experience gained in working with enterprise APs, firmware flashing, and PoE setups.
-* 📚 **Personal Milestone:** This setup marked both a technical win and a personal moment of reclaiming and reimagining a meaningful space.
+**Key Hardware Notes:**
+- R730 was Ruckus's first Wi-Fi 6 access point
+- Used early/prototype Wi-Fi 6 chips before the standard was finalized
+- Required more power than standard consumer equipment
 
 ---
 
-## 🔍 Skills Showcased
+## 🔧 Setup Process
 
-* Enterprise Hardware Integration
-* Standalone Firmware Deployment
-* PoE Implementation
-* Wireless Security Configuration
-* Environmental Troubleshooting
-* Technical Documentation
+### Initial Access
+1. **Factory Reset**: Device came password-protected from previous use
+2. **Physical Reset**: Used pinhole reset button to restore factory defaults
+3. **Direct Connection**: Connected laptop directly via Ethernet to access web interface
+
+### Firmware Challenge
+4. **Research**: Discovered this model lacks Unleashed firmware support
+   - Unleashed = Ruckus's controller-free firmware for small deployments
+   - Early Wi-Fi 6 chipset wasn't compatible with newer firmware builds
+5. **Alternative Solution**: Located "Solo" firmware on Ruckus support site
+   - Solo firmware designed for standalone operation without controller
+
+### Firmware Installation
+6. **Downloaded** correct Solo firmware version for hardware revision
+7. **Flashed firmware** through web interface
+8. **Verified** successful installation and reboot to Solo interface
+
+### Network Configuration
+9. **Created separate SSIDs** for 2.4GHz and 5GHz bands
+10. **Configured security** with WPA2/WPA3 encryption
+11. **Set custom channels** to avoid interference from neighbors
+12. **Changed default credentials** and tested coverage
 
 ---
 
-## 🤝 Contributing or Learning From This Project?
+## ⚠️ Challenges Encountered
 
-This project is part of my personal IT portfolio to document hands-on experience with enterprise networking hardware. If you’re working on similar setups or studying for certifications like **CompTIA Network+**, **ISC2 CC**, or **Cisco CCNA**, feel free to fork this repo or ask questions!
+### Firmware Compatibility Issue
+**Problem**: Standard Unleashed firmware wasn't available for this model
+**Root Cause**: Early Wi-Fi 6 chipset predated final Wi-Fi 6 standard
+**Solution**: Used Solo firmware instead, which provided standalone functionality
 
-🔗 [Portfolio](https://github.com/Allen-Bartley/personal-portfolio)
+### Power Requirements
+**Problem**: Higher power needs than consumer equipment
+**Solution**: Purchased appropriate high-wattage PoE injector
+
+### Coverage Planning
+**Problem**: Dense wall construction interfering with signal
+**Solution**: Strategic placement and enterprise-grade hardware provided needed coverage
 
 ---
 
-## 📉 Project Metadata
+## ✅ Results
 
-* 📌 **Status:** In Production
-* 🗓️ **Deployment Date:** July 2025
-* 🏡 **Location:** Legacy Home, Foster, West Virginia
-* 👨‍💻 **Maintainer:** Allen Bartley
+**Successful Outcomes:**
+- ✅ Full Wi-Fi coverage throughout the house, including previously dead zones
+- ✅ Stable, high-performance wireless connectivity
+- ✅ Hands-on experience with enterprise networking equipment
+- ✅ Working knowledge of PoE implementation and enterprise AP configuration
+
+**Performance Improvements:**
+- Eliminated Wi-Fi dead zones in bedrooms and back rooms
+- Consistent signal strength throughout the property
+- Better performance than consumer routers in challenging environment
 
 ---
+
+## 📚 Learning Outcomes
+
+**Technical Skills Gained:**
+- Enterprise access point configuration and setup
+- Firmware research and installation procedures
+- PoE power planning and implementation
+- RF planning considerations for challenging environments
+
+**Enterprise Equipment Experience:**
+- Working with end-of-life enterprise gear
+- Understanding firmware compatibility issues
+- Adapting when standard solutions aren't available
+- Enterprise vs. consumer equipment capabilities
+
+**Problem-Solving Process:**
+- Researching hardware limitations and workarounds
+- Finding alternative firmware when standard options unavailable
+- Balancing cost vs. performance for home lab use
+
+---
+
+## 💡 Key Takeaways
+
+**Why This Approach Worked:**
+- Enterprise hardware handled RF challenges better than consumer equipment
+- Early research prevented compatibility surprises
+- Solo firmware provided needed standalone functionality
+
+**Lessons Learned:**
+- End-of-life enterprise gear can be cost-effective for learning
+- Always verify firmware availability before purchasing used enterprise equipment
+- Early adoption hardware (like first-gen Wi-Fi 6) may have limited support
+
+**Value for Career Development:**
+- Practical experience with enterprise networking hardware
+- Understanding of RF planning and deployment challenges
+- Firmware management and troubleshooting skills
+
+---
+
+## 🔗 Related Projects
+
+- [`residential-network-architecture`](https://github.com/Allen-Bartley/residential-network-architecture) - Overall network design
+- [`personal-tech-inventory`](https://github.com/Allen-Bartley/personal-tech-inventory) - Lab equipment documentation
+
+---
+
+> **Project Status:** Complete and operational  
+> **Deployment Date:** July 2025  
+> **Current Status:** Providing reliable Wi-Fi coverage throughout property  
+> **Skills Focus:** Enterprise networking hardware, firmware management, RF planning
